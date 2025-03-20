@@ -2,23 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hellcluster-api
+  name: hellocluster-api
   namespace: hellocluster
 spec:
   revisionHistoryLimit: 1
   replicas: 2
   selector:
     matchLabels:
-      app.kubernetes.io/name: hellcluster-api
+      app.kubernetes.io/name: hellocluster-api
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: hellcluster-api
+        app.kubernetes.io/name: hellocluster-api
     spec:
-      imagePullSecrets:
-        - name: logsquaredn-ghcr-pull # TODO
       containers:
-        - name: hellcluster-api
+        - name: hellocluster-api
           image: ghcr.io/phish3y/hellocluster:6f804c8972caed08a89582eac56609681c19892a
           imagePullPolicy: IfNotPresent
           ports:
