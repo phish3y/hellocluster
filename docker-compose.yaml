@@ -1,5 +1,5 @@
 services:
-  wasm:
+  hellocluster:
     build:
       context: .
       dockerfile: Dockerfile
