@@ -24,7 +24,6 @@ async fn index() -> Html<String> {
     let mut services: Vec<String> = Vec::new();
     let ingresses = ingress_api.list(&ListParams::default()).await.unwrap();
     for ingress in ingresses {
-        println!("found an ingress");
         if let Some(spec) = ingress.spec {
             if let Some(rules) = spec.rules {
                 for rule in rules {
