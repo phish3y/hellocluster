@@ -17,10 +17,11 @@ async fn main() {
     axum::serve(listener, app).await.unwrap();
 }
 
-async fn index() -> Html<&'static str> {
+async fn index() -> Html<String> {
     let kube_client = Client::try_default().await.unwrap();
     let ingress_api: Api<Ingress> = Api::all(kube_client);
 
+    let mut services: Vec<String> = Vec::new();
     let ingresses = ingress_api.list(&ListParams::default()).await.unwrap();
     for ingress in ingresses {
         println!("found an ingress");
@@ -29,10 +30,10 @@ async fn index() -> Html<&'static str> {
                 for rule in rules {
                     if let Some(host) = rule.host {
                         println!("{}", host);
-                    }
-                    if let Some(http) = rule.http {
-                        for path in http.paths {
-                            println!("path: {}", path.path.unwrap_or_default());
+                        if let Some(http) = rule.http {
+                            for path in http.paths {
+                                services.push(format!("{}{}", host, path.path.unwrap()));
+                            }
                         }
                     }
                 }
@@ -40,7 +41,14 @@ async fn index() -> Html<&'static str> {
         }
     }
 
-    Html("
+    let service_list = services
+        .iter()
+        .map(|service| format!("<li>{}</li>", service))
+        .collect::<Vec<String>>()
+        .join("\n");
+
+    Html(format!(
+        "
         <!DOCTYPE html>
         <html>
             <head>
@@ -49,9 +57,14 @@ async fn index() -> Html<&'static str> {
             </head>
             <body>
                 <h3>phish3y's cluster</h3>
+                <ul>
+                    {}
+                </ul>
             </body>
         </html>
-    ")
+        ", 
+        service_list
+    ))
 }
 
 async fn favicon() -> impl IntoResponse {
