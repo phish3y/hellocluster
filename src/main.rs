@@ -57,7 +57,8 @@ async fn index() -> Html<String> {
                 <link rel='icon' href='/favicon.ico' type='image/x-icon'>
             </head>
             <body>
-                <h3>phish3y's cluster</h3>
+                <h2>phish3y's cluster</h2>
+                <h4>services available:</h4>
                 <ul>
                     {}
                 </ul>
