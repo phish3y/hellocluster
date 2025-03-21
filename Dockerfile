@@ -11,5 +11,7 @@ RUN cargo build --release --target-dir /usr/local/cargo/bin
 
 FROM debian:stable-slim@sha256:dbab92bea4d20d665d158151d5c06fa8d205ab930b344ba949ef323fe98fa663
 RUN apt-get update && apt-get install -y lsb-release ca-certificates && apt-get clean all
+
+COPY favicon.ico /usr/local/bin/favicon.ico
 COPY --from=builder /usr/local/cargo/bin/release/hellocluster /usr/local/bin/hellocluster
 ENTRYPOINT ["/usr/local/bin/hellocluster"]
