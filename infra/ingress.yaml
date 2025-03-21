@@ -19,7 +19,7 @@ spec:
           service:
             name: hellocluster
             port:
-              name: http
+              number: 3000
     host: phish3y.cc
   tls:
   - hosts:
