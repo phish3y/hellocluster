@@ -15,6 +15,7 @@ spec:
       labels:
         app.kubernetes.io/name: hellocluster
     spec:
+      serviceAccountName: hellocluster
       containers:
         - name: hellocluster
           image: ghcr.io/phish3y/hellocluster:e4d1fa1a353423d6554fb91ca072b071c49ae613
