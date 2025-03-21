@@ -29,10 +29,11 @@ async fn index() -> Html<String> {
             if let Some(rules) = spec.rules {
                 for rule in rules {
                     if let Some(host) = rule.host {
-                        println!("{}", host);
-                        if let Some(http) = rule.http {
-                            for path in http.paths {
-                                services.push(format!("{}{}", host, path.path.unwrap()));
+                        if !host.eq("phish3y.cc") {
+                            if let Some(http) = rule.http {
+                                for path in http.paths {
+                                    services.push(format!("{}{}", host, path.path.unwrap()));
+                                }
                             }
                         }
                     }
