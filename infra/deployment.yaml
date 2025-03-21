@@ -18,7 +18,7 @@ spec:
       serviceAccountName: hellocluster
       containers:
         - name: hellocluster
-          image: ghcr.io/phish3y/hellocluster:740f173d9e51fd4dc91d4aa667de579ff8b4c36f
+          image: ghcr.io/phish3y/hellocluster:ff2cc952bae5cd35ef1b5b71fd5f92dd9f960efe
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
