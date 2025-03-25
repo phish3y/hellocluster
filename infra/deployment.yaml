@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hellocluster
-  namespace: hellocluster
+  name: hello-cluster
+  namespace: hello-cluster
 spec:
   revisionHistoryLimit: 1
   replicas: 2
   selector:
     matchLabels:
-      app.kubernetes.io/name: hellocluster
+      app.kubernetes.io/name: hello-cluster
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: hellocluster
+        app.kubernetes.io/name: hello-cluster
     spec:
-      serviceAccountName: hellocluster
+      serviceAccountName: hello-cluster
       containers:
-        - name: hellocluster
+        - name: hello-cluster
           image: ghcr.io/phish3y/hellocluster:ff2cc952bae5cd35ef1b5b71fd5f92dd9f960efe
           imagePullPolicy: IfNotPresent
           ports:

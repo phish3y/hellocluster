@@ -2,8 +2,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hellocluster
-  namespace: hellocluster
+  name: hello-cluster
+  namespace: hello-cluster
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
@@ -17,7 +17,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: hellocluster
+            name: hello-cluster
             port:
               number: 3000
     host: phish3y.cc
