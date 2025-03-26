@@ -69,7 +69,7 @@ async fn index() -> Html<String> {
 }
 
 async fn favicon() -> impl IntoResponse {
-    match fs::read("favicon.ico") {
+    match fs::read("/usr/local/bin/favicon.ico") {
         Ok(bytes) => Response::builder()
             .header("Content-Type", "image/x-icon")
             .body(Body::from(bytes))
